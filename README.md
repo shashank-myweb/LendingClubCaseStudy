@@ -13,9 +13,20 @@
 ## General Information
 - Provide general information about your project here.
 - What is the background of your project?
+- This project is about Data analysis for a Consumer finance company which is in the business of providing Loans to Indian Customers
 - What is the business probem that your project is trying to solve?
+- Present a set of Insights and Recommendations based on 'Consumer attributes' and 'Loan attributes' to the Company, so that 
+- Lending money to Loan applicants who may default is minimized, or 
+- Present alternative choices to risky applicants, such as different terms and conditions for Loans like higher interest rate or less Loan principal amount approved.
 - What is the dataset that is being used?
+- Historical dataset is provided which contains data of past loan applicants and whether they 'defaulted' or 'not'.
+Basically, this means that whether the Loan takers paid the loan as per terms and conditions or not.
 
+## Approach
+Following general approach has been followed consistent with Generic EDA process
+1. Data understanding
+2. Identifying columns which hold valuable information and which ones do not
+3. Clean the data for null, 
 <!-- You don't have to answer all the questions - just the ones relevant to your project. -->
 
 ## Conclusions
