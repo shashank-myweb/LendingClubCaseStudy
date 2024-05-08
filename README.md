@@ -39,9 +39,19 @@ Following general approach has been followed consistent with Generic EDA process
 
 
 ## Technologies Used
-- library - version 1.0
-- library - version 2.0
-- library - version 3.0
+- Python - version 3.11.7
+- pandas - version 2.1.4
+- numpy  - version 1.26.4
+- seaborn - version 0.12.2
+- matplotlib.pyplot - version 3.8.0
+- plotly.express - version 5.9.0
+
+## Other tools Used
+- Python v3.3
+- Anaconda package
+- Jupyter notebook
+- Google sheets
+- Google presentation
 
 <!-- As the libraries versions keep on changing, it is recommended to mention the version of library used in this project -->
 
