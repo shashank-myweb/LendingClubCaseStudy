@@ -1,4 +1,4 @@
-# Project Name
+# Lending Club Case Study
 > This project is about Data analysis for a Consumer finance company which is in the business of providing Loans to Indian Customers
 
 
