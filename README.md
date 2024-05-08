@@ -21,19 +21,23 @@ Basically, this means that whether the Loan takers paid the loan as per terms an
 ## Approach
 The approach we will follow is the standard approach to analyze a data set which is raw in nature. Hence we will apply the following methodologies to clean the data, understand the nature of data and arrive at a list of data columns which are required from a final analysis perspective. A list of steps that we are going to follow are as follows. Data sourcing has already been mentioned :
 Data cleaning
-Univariate Analysis
-Segmented variate Analysis
-BiVariate Analysis
-Derived Metrics, if any
-Collate and conclude on findings to arrive at suggestions
+- Univariate Analysis
+- Segmented variate Analysis
+- BiVariate Analysis
+- Derived Metrics, if any
+- Collate and conclude on findings to arrive at suggestions
 
 <!-- You don't have to answer all the questions - just the ones relevant to your project. -->
 
 ## Conclusions
-- Conclusion 1 from the analysis
-- Conclusion 2 from the analysis
-- Conclusion 3 from the analysis
-- Conclusion 4 from the analysis
+With respect to borrowers following considerations can be considered as risk for 'defaults' :
+- Should not be from large urban cities like california, new york, texas, florida etc.
+- not having annual income in the range 50000-100000.
+- not having Public Recorded Bankruptcy.
+- have least grades like E,F,G which indicates high risk.
+- Have very high Debt to Income value.
+- Have working experience of 10+ years.
+
 
 <!-- You don't have to answer all the questions - just the ones relevant to your project. -->
 
