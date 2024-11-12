@@ -1,0 +1,640 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "User Management - OpenAPI 3.0",
+    "description": "This is a sample User management server based on the OpenAPI 3.0 specification. ",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "shashank@dac.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.19"
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  },
+  "servers": [
+    {
+      "url": "https://api.uat.apigeex.digitalapicraft.com/user-mgmt/api/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "user-management",
+      "description": "Manage your users"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Add a new user",
+        "description": "Create a new User entity",
+        "operationId": "addUser",
+        "requestBody": {
+          "description": "Create a new User entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "Default": {
+                  "value": {
+                    "firstName": "John",
+                    "lastName": "James",
+                    "email": "john@email.com"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "examples": {
+                  "John": {
+                    "value": {
+                      "id": 1,
+                      "firstName": "John",
+                      "lastName": "James",
+                      "email": "john@email.com",
+                      "createdAt": "2024-06-13T13:49:00.405Z",
+                      "createdBy": "system",
+                      "updatedAt": "2024-06-13T13:49:00.405Z",
+                      "updatedBy": "system"
+                    }
+                  },
+                  "Jane": {
+                    "value": {
+                      "id": 2,
+                      "firstName": "Jane",
+                      "lastName": "James",
+                      "email": "jane@email.com",
+                      "createdAt": "2024-06-13T13:49:00.405Z",
+                      "createdBy": "system",
+                      "updatedAt": "2024-06-13T13:49:00.405Z",
+                      "updatedBy": "system"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "No FirstName": {
+                    "value": {
+                      "firstName": "First name is mandatory"
+                    }
+                  },
+                  "No FirstName and email": {
+                    "value": {
+                      "firstName": "First name is mandatory",
+                      "email": "Email is mandatory"
+                    }
+                  },
+                  "Invalid Json Payload": {
+                    "value": {
+                      "error": "Malformed JSON request"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "Invalid-UserId": {
+                    "value": {
+                      "timestamp": "2024-06-13T13:59:43.710Z",
+                      "status": 404,
+                      "error": "Not Found",
+                      "path": "/api/v1/userss"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Method Not Allowed": {
+                    "value": {
+                      "timestamp": "2024-06-13T13:55:57.906Z",
+                      "status": 405,
+                      "error": "Method Not Allowed",
+                      "path": "/api/v1/user/1"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get All users",
+        "description": "",
+        "operationId": "getAllUsers",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/requestBodies/UserArray"
+                },
+                "examples": {
+                  "example-1": {
+                    "value": [
+                      {
+                        "firstName": "John",
+                        "lastName": "James",
+                        "email": "john@email.com",
+                        "createdBy": "shashank",
+                        "updatedBy": "shashank"
+                      },
+                      {
+                        "firstName": "Jane",
+                        "lastName": "Doe",
+                        "email": "jane.doe@email.com",
+                        "createdBy": "admin",
+                        "updatedBy": "admin"
+                      }
+                    ]
+                  },
+                  "no-users": {
+                    "value": []
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "Invalid-UserId": {
+                    "value": {
+                      "timestamp": "2024-06-13T13:59:43.710Z",
+                      "status": 404,
+                      "error": "Not Found",
+                      "path": "/api/v1/userss"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/user/{userId}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "description": "Get user by user id",
+        "operationId": "getUserById",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The user id that needs to be fetched. Use 1 for testing. ",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "examples": {
+                  "John": {
+                    "value": {
+                      "id": 1,
+                      "firstName": "John",
+                      "lastName": "James",
+                      "email": "john@email.com",
+                      "createdAt": "2024-06-13T18:01:00.405Z",
+                      "createdBy": "system",
+                      "updatedAt": "2024-06-13T18:01:00.405Z",
+                      "updatedBy": "system"
+                    }
+                  },
+                  "Jane": {
+                    "value": {
+                      "id": 2,
+                      "firstName": "Jane",
+                      "lastName": "James",
+                      "email": "jane@email.com",
+                      "createdAt": "2024-06-13T09:31:00.405Z",
+                      "createdBy": "system",
+                      "updatedAt": "2024-06-13T09:31:00.405Z",
+                      "updatedBy": "system"
+                    }
+                  },
+                  "Michael": {
+                    "value": {
+                      "id": 3,
+                      "firstName": "Michael",
+                      "lastName": "T",
+                      "email": "michael@email.com",
+                      "createdAt": "2024-06-13T12:49:00.405Z",
+                      "createdBy": "system",
+                      "updatedAt": "2024-06-13T12:49:00.405Z",
+                      "updatedBy": "system"
+                    }
+                  },
+                  "Sarah": {
+                    "value": {
+                      "id": 4,
+                      "firstName": "Sarah",
+                      "lastName": "Lynn",
+                      "email": "sarah@email.com",
+                      "createdAt": "2024-06-13T13:51:00.405Z",
+                      "createdBy": "system",
+                      "updatedAt": "2024-06-13T13:51:00.405Z",
+                      "updatedBy": "system"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "Invalid-UserId": {
+                    "value": {
+                      "timestamp": "2024-06-13T13:59:43.710Z",
+                      "status": 400,
+                      "error": "Bad Request",
+                      "path": "/api/v1/user/r4"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Update user",
+        "description": "Update user information of an existing user based on userId",
+        "operationId": "updateUser",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The user id that needs to be fetched. Use 1 for testing. ",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "requestBody": {
+          "description": "Update an existing user",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "firstName": "John",
+                    "lastName": "James",
+                    "email": "john@email.com"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "examples": {
+                  "John": {
+                    "value": {
+                      "id": 1,
+                      "firstName": "John",
+                      "lastName": "James",
+                      "email": "john@email.com",
+                      "createdAt": "2024-06-13T13:49:00.405Z",
+                      "createdBy": "system",
+                      "updatedAt": "2024-06-13T13:49:00.405Z",
+                      "updatedBy": "system"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "Invalid-UserId": {
+                    "value": {
+                      "timestamp": "2024-06-13T13:59:43.710Z",
+                      "status": 400,
+                      "error": "Bad Request",
+                      "path": "/api/v1/user/r4"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "Invalid-UserId": {
+                    "value": {
+                      "timestamp": "2024-06-13T13:59:43.710Z",
+                      "status": 404,
+                      "error": "Not Found",
+                      "path": "/api/v1/user/50"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Delete user",
+        "description": "Delete a User",
+        "operationId": "deleteUser",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The user id that needs to be fetched. Use 1 for testing. ",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Operation. No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "Invalid-UserId": {
+                    "value": {
+                      "timestamp": "2024-06-13T13:59:43.710Z",
+                      "status": 400,
+                      "error": "Bad Request",
+                      "path": "/api/v1/user/r4"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "Invalid-Path": {
+                    "value": {
+                      "timestamp": "2024-06-13T13:59:43.710Z",
+                      "status": 404,
+                      "error": "Not Found",
+                      "path": "/api/v1/users/50"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "required": [
+          "firstName",
+          "lastName",
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "James"
+          },
+          "email": {
+            "type": "string",
+            "example": "john@email.com"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "fieldname": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "requestBodies": {
+      "User": {
+        "description": "User object that needs to be added or modified",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        }
+      },
+      "UserArray": {
+        "description": "List of user objects",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "examples": {
+              "example-1": {
+                "value": [
+                  {
+                    "firstName": "John",
+                    "lastName": "James",
+                    "email": "john@email.com",
+                    "createdBy": "shashank",
+                    "updatedBy": "shashank"
+                  },
+                  {
+                    "firstName": "Jane",
+                    "lastName": "Doe",
+                    "email": "jane.doe@email.com",
+                    "createdBy": "admin",
+                    "updatedBy": "admin"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "Errors": {
+        "description": "List of Error objects",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Error"
+              }
+            },
+            "examples": {
+              "No FirstName": {
+                "value": [
+                  {
+                    "fieldname": "firstName",
+                    "errormessage": "First name is mandatory"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "apikey": {
+        "type": "apiKey",
+        "name": "apikey",
+        "in": "header"
+      }
+    }
+  }
+}
